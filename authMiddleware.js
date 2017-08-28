@@ -1,7 +1,7 @@
-const jwt = require("jsonwebtoken"); const APP_SECRET = "myappsecret";
+const jwt = require("jsonwebtoken");
+const APP_SECRET = "myappsecret";
 
 const USERNAME = "admin";
-
 const PASSWORD = "secret";
 
 module.exports = function (req, res, next)
@@ -12,7 +12,8 @@ module.exports = function (req, res, next)
         {
             let token = jwt.sign({ data: USERNAME, expiresIn: "1h" }, APP_SECRET);
             res.json({ success: true, token: token });
-        } else
+        }
+        else
         {
             res.json({ success: false });
         }
@@ -34,5 +35,6 @@ module.exports = function (req, res, next)
         res.statusCode = 401;
         res.end();
         return;
-    } next();
+    }
+    next();
 }
